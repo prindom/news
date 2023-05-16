@@ -18,7 +18,11 @@ $metaTags = $dom->getElementsByTagName('meta');
 // return meta information as json
 $meta = array();
 foreach ($metaTags as $metaTag) {
-    $meta[$metaTag->getAttribute('name')] = $metaTag->getAttribute('content');
+    if ($metaTag->getAttribute('name')) {
+        $meta[$metaTag->getAttribute('name')] = $metaTag->getAttribute('content');
+    } else if ($metaTag->getAttribute('property')) {
+        $meta[$metaTag->getAttribute('property')] = $metaTag->getAttribute('content');
+    }
 }
 echo json_encode($meta);
 die();
