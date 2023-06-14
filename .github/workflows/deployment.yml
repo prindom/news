@@ -1,0 +1,16 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy code
+        run: cd /var/www/news && git pull origin master && npm install && npm run build
+          # Verwende das Secret in deinem Workflow
+          # Beispiel: echo ${{ secrets.SERVER_PASSWORD }}
