@@ -44,11 +44,11 @@ export default (initialID = null) => ({
 
         if(this.url) {
             const encodedUrl = encodeURIComponent(this.url)
-            fetch("https://news.redslate.net/getMetaData.php?url="+encodedUrl).then(response => {
+            /*fetch("https://news.redslate.net/getMetaData.php?url="+encodedUrl).then(response => {
                 let image = new DOMParser().parseFromString(response.text(), 'text/html').querySelector('meta[property="og:image"]').getAttribute('content')
                 console.log(image)
                 this.image = image
-            })
+            })*/
         }
     },
 
