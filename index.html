@@ -56,9 +56,9 @@
         <template x-for="article in items">
             <article x-data="item(article)" x-intersect.once="loadFull"
                      class="mb-3 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25 ">
-                <div class="flex items-start gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900">
+                <div class="flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900">
                     <!--<img :src="image" alt="image" class="w-12 h-12 rounded shadow-lg" />-->
-                    <div>
+                    
                         <h3 class="font-medium sm:text-lg">
                             <a :href="url" target="_blank"
                                class="hover:underline text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
@@ -101,7 +101,6 @@
                                    x-text="by"></a>
                             </p>
                         </div>
-                    </div>
 
                 </div>
             </article>
