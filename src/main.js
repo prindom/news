@@ -6,6 +6,7 @@ import item from './item'
 import themeToggle from './themeToggle'
 import nav from './nav'
 import list from './list'
+import search from './search'
 
 
 // redirect to same location with url param type=new if no url param type is set
@@ -22,6 +23,7 @@ Alpine.store('current', 'top')
 Alpine.data('nav', nav)
 
 Alpine.data('list', list)
+Alpine.data('search', search)
 
 
 Alpine.data('item', item)
@@ -30,3 +32,4 @@ Alpine.data('themeToggle', themeToggle)
 
 
 Alpine.start()
+

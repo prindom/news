@@ -48,8 +48,82 @@
                 </svg>
 
             </button>
-        </div>
+            <div x-data="search()">
+                <button id="searchBtn" type="button" @click="open = true"
+                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2">
 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                         fill="currentColor" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M21 21l-4.35-4.35m-.6-.6a8.25 8.25 0 11-11.67-11.67 8.25 8.25 0 0111.67 11.67z"/>
+                    </svg>
+                </button>
+                <!-- Modal -->
+                <div
+                        x-show="open"
+                        style="display: none"
+                        x-on:keydown.escape.prevent.stop="open = false"
+                        role="dialog"
+                        aria-modal="true"
+                        x-id="['modal-title']"
+                        :aria-labelledby="$id('modal-title')"
+                        class="fixed inset-0 z-10 overflow-y-auto"
+                >
+                    <!-- Overlay -->
+                    <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50"></div>
+
+                    <!-- Panel -->
+                    <div
+                            x-show="open" x-transition
+                            x-on:click="open = false"
+                            class="relative flex min-h-screen items-center justify-center p-4"
+                    >
+                        <div
+                                x-on:click.stop
+                                x-trap.noscroll.inert="open"
+                                class="relative w-full max-w-2xl overflow-y-auto rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25">
+                            <div class="p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900">
+                                <!-- Title
+                                <h2 class="text-3xl font-bold text-gray-600 dark:text-gray-300" :id="$id('modal-title')">Search</h2>
+ -->
+                                <div class="relative">
+                                    <label for="Search" class="sr-only"> Search </label>
+
+                                    <input
+                                            type="text"
+                                            id="Search"
+                                            x-ref="searchInput"
+                                            placeholder="Search for..."
+                                            class="w-full rounded-md border-gray-200 py-2.5 p-10 shadow-sm sm:text-sm"
+                                    />
+
+                                    <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
+    <button type="button" class="text-gray-600 hover:text-gray-700">
+      <span class="sr-only">Search</span>
+
+      <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-4 w-4"
+      >
+        <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+        />
+      </svg>
+    </button>
+  </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="articles" x-data="list" class="mx-auto container">
@@ -58,49 +132,49 @@
                      class="mb-3 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25 ">
                 <div class="flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900">
                     <!--<img :src="image" alt="image" class="w-12 h-12 rounded shadow-lg" />-->
-                    
-                        <h3 class="font-medium sm:text-lg">
-                            <a :href="url" target="_blank"
-                               class="hover:underline text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
-                               x-text="title"></a>
-                        </h3>
 
-                        <p class="line-clamp-2 text-sm text-gray-700" x-show="text != ''" x-text="text">
-                            loading ...
-                        </p>
+                    <h3 class="font-medium sm:text-lg">
+                        <a :href="url" target="_blank"
+                           class="hover:underline text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                           x-text="title"></a>
+                    </h3>
 
-                        <div class="mt-2 sm:flex sm:items-center sm:gap-2">
+                    <p class="line-clamp-2 text-sm text-gray-700" x-show="text != ''" x-text="text">
+                        loading ...
+                    </p>
 
-                            <div class="flex items-center gap-1 text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
+                    <div class="mt-2 sm:flex sm:items-center sm:gap-2">
 
-                                <p class="text-xs" x-text="score"></p>
-                            </div>
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
 
-                            <span class="hidden sm:block" aria-hidden="true">&middot;</span>
-
-                            <div class="flex items-center gap-1 text-gray-500 hover:underline hover:cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
-                                </svg>
-
-                                <p class="text-xs" x-text="descendants"></p>
-                            </div>
-
-                            <span class="hidden sm:block" aria-hidden="true">&middot;</span>
-
-                            <p class="hidden sm:block sm:text-xs sm:text-gray-500">
-                                Posted by
-                                <a target="_blank" :href="by_url" class="font-medium underline hover:text-gray-700"
-                                   x-text="by"></a>
-                            </p>
+                            <p class="text-xs" x-text="score"></p>
                         </div>
+
+                        <span class="hidden sm:block" aria-hidden="true">&middot;</span>
+
+                        <div class="flex items-center gap-1 text-gray-500 hover:underline hover:cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+                            </svg>
+
+                            <a :href='"/?item="+id' class="text-xs" x-text="descendants"></a>
+                        </div>
+
+                        <span class="hidden sm:block" aria-hidden="true">&middot;</span>
+
+                        <p class="hidden sm:block sm:text-xs sm:text-gray-500">
+                            Posted by
+                            <a target="_blank" :href="by_url" class="font-medium underline hover:text-gray-700"
+                               x-text="by"></a>
+                        </p>
+                    </div>
 
                 </div>
             </article>
@@ -109,6 +183,7 @@
 
 
 </div>
+
 <script type="module" src="./src/main.js"></script>
 </body>
 

@@ -2,7 +2,7 @@
   "lang": "en",
   "dir": "ltr",
   "name": "news.redslate.net",
-  "short_name": "news.redslate.net",
+  "short_name": "hn news",
   "icons": [{
     "src": "icon/lowres.webp",
     "sizes": "64x64",
