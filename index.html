@@ -73,19 +73,13 @@
                     <div x-show="open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50"></div>
 
                     <!-- Panel -->
-                    <div
-                            x-show="open" x-transition
-                            x-on:click="open = false"
-                            class="relative flex min-h-screen items-center justify-center p-4"
-                    >
-                        <div
-                                x-on:click.stop
-                                x-trap.noscroll.inert="open"
-                                class="relative w-full max-w-2xl overflow-y-auto rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25">
+                    <div x-show="open" x-transition x-on:click="open = false"
+                         class="relative flex min-h-screen items-center justify-center p-4">
+                        <div x-on:click.stop x-trap.noscroll.inert="open"
+                             class="relative w-full max-w-2xl overflow-y-auto rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25">
                             <div class="p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900">
                                 <!-- Title
-                                <h2 class="text-3xl font-bold text-gray-600 dark:text-gray-300" :id="$id('modal-title')">Search</h2>
- -->
+                                <h2 class="text-3xl font-bold text-gray-600 dark:text-gray-300" :id="$id('modal-title')">Search</h2>-->
                                 <div class="relative">
                                     <label for="Search" class="sr-only"> Search </label>
 
@@ -98,25 +92,23 @@
                                     />
 
                                     <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
-    <button type="button" class="text-gray-600 hover:text-gray-700">
-      <span class="sr-only">Search</span>
-
-      <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="h-4 w-4"
-      >
-        <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-        />
-      </svg>
-    </button>
-  </span>
+                                        <button type="button" class="text-gray-600 hover:text-gray-700">
+                                            <span class="sr-only">Search</span>
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke-width="1.5"
+                                                    stroke="currentColor"
+                                                    class="h-4 w-4">
+                                                <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
