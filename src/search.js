@@ -3,7 +3,7 @@ export default () => ({
     init() {
         this.open = false
         this.$watch('open', (value) => {
-            console.log('search open', value)
+            // console.log('search open', value)
         })
         // on ctrl or cmd + k open search
         document.addEventListener('keydown',  (event) =>  {
@@ -14,7 +14,9 @@ export default () => ({
                         this.open = false
                     } else {
                         this.open = true
-                        console.log(this.$el.querySelector('input'))
+                        setTimeout(() => {
+                            this.$el.querySelector('input#Search').focus();
+                        }, 0);
                     }
                 }
             }
