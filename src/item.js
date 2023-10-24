@@ -29,7 +29,6 @@ export default (initialID = null) => ({
     },
 
     handleData(data) {
-        console.log('handleData', data, this)
         this.title = data.title
         this.url = data.url
         this.score = data.score
@@ -55,7 +54,6 @@ export default (initialID = null) => ({
     async loadFull() {
     
         if (this.id) {
-            console.log('item id:', this.id)
             let url = 'https://hacker-news.firebaseio.com/v0/item/' + this.id + '.json'
             let data = await fetch(url).then(response => response.json())
             this.handleData(data)

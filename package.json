@@ -12,6 +12,7 @@
     "vite": "^2.4.4"
   },
   "dependencies": {
+    "@alpinejs/focus": "^3.13.2",
     "@alpinejs/intersect": "^3.13.0",
     "alpinejs": "^3.13.0",
     "cross-env": "^7.0.3"

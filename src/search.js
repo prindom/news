@@ -22,7 +22,8 @@ export default () => ({
             }
             // if is open and enter is pressed, redirect with url param search
             if (this.open && event.key === 'Enter') {
-                window.location = window.location.origin + "?search=" + this.$el.querySelector('input').value
+                Alpine.store('current', 'search')
+                window.location = window.location.origin + "?type=search&query=" + this.$el.querySelector('input').value
             }
         })
     }
