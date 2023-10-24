@@ -61,7 +61,7 @@ export default (initialID = null) => ({
     loadWithChildren() {
         if (!this.id)
             return
-        let url = "http://hn.algolia.com/api/v1/items/:id".replace(":id", this.id)
+        let url = "https://hn.algolia.com/api/v1/items/:id".replace(":id", this.id)
         fetch(url).then(response => response.json()).then(data => {
             // map all fields to match hn api
             this.id = data.objectID
