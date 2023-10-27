@@ -28,6 +28,9 @@ export default (initialID = null) => ({
     handleData(data) {
         this.title = data.title
         this.url = data.url
+        if(!this.url){
+            this.url = '/item.html?id='+this.id
+        }
         this.score = data.score
         this.by = data.by
         this.time = data.time
@@ -93,7 +96,7 @@ export default (initialID = null) => ({
             // create a list item for each comment
             // if it has children, create new ul and call printComments
             let li = document.createElement('li')
-            li.classList.add('comment', 'border-l-2', 'border-gray-200', 'dark:border-gray-700', 'pl-4', 'py-2', 'mb-2')
+            li.classList.add('comment', 'border-l-2', 'border-gray-200', 'dark:border-gray-700', 'pl-4', 'py-2', 'mb-2', 'hover:border-gray-300', 'dark:hover:border-gray-600')
             if (child.children.length > 0) {
                 let span = document.createElement('span')
                 span.innerHTML = unescape(child.text)
