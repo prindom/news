@@ -1,3 +1,6 @@
+import TinyGesture from "tinygesture";
+import nav from "./nav";
+
 export default (initialID = null) => ({
     open: false,
     id: initialID,
@@ -23,13 +26,134 @@ export default (initialID = null) => ({
             this.id = new URLSearchParams(window.location.search).get('id')
             this.loadWithChildren()
         }
+
+        this.handleGestures()
+    },
+
+    handleGestures() {
+        let swiped = false;
+        let startOffset = 0;
+        const decelerationOnOverflow = 4;
+        const revealWidth = 50;
+        const snapWidth = revealWidth / 1.5;
+        // Options object is optional. These are the defaults.
+        const options = {
+            // Used to calculate the threshold to consider a movement a swipe. it is
+            // passed type of 'x' or 'y'.
+            threshold: (type, self) =>
+                Math.max(
+                    25,
+                    Math.floor(
+                        0.15 *
+                        (type === 'x'
+                            ? window.innerWidth || document.body.clientWidth
+                            : window.innerHeight || document.body.clientHeight)
+                    )
+                ),
+            // Minimum velocity the gesture must be moving when the gesture ends to be
+            // considered a swipe.
+            velocityThreshold: 10,
+            // Used to calculate the distance threshold to ignore the gestures velocity
+            // and always consider it a swipe.
+            disregardVelocityThreshold: (type, self) =>
+                Math.floor(0.5 * (type === 'x' ? self.element.clientWidth : self.element.clientHeight)),
+            // Point at which the pointer moved too much to consider it a tap or longpress
+            // gesture.
+            pressThreshold: 8,
+            // If true, swiping in a diagonal direction will fire both a horizontal and a
+            // vertical swipe.
+            // If false, whichever direction the pointer moved more will be the only swipe
+            // fired.
+            diagonalSwipes: false,
+            // The degree limit to consider a swipe when diagonalSwipes is true.
+            diagonalLimit: Math.tan(((45 * 1.5) / 180) * Math.PI),
+            // Listen to mouse events in addition to touch events. (For desktop support.)
+            mouseSupport: true,
+        };
+
+        const target = this.$el
+        const gesture = new TinyGesture(target, options);
+        // swipe gestures
+        gesture.on("panmove", (event) => {
+            if (gesture.animationFrame) {
+                return;
+            }
+            //event.preventDefault();
+            gesture.animationFrame = window.requestAnimationFrame(() => {
+                let getX = (x) => {
+                    if (x < revealWidth && x > -revealWidth) {
+                        return x;
+                    }
+                    if (x < -revealWidth) {
+                        return (x + revealWidth) / decelerationOnOverflow - revealWidth;
+                    }
+                    if (x > revealWidth) {
+                        return (x - revealWidth) / decelerationOnOverflow + revealWidth;
+                    }
+                };
+                const newX = getX(startOffset + gesture.touchMoveX);
+                target.style.transform = "translateX(" + newX + "px)";
+                if (newX >= snapWidth || newX <= -snapWidth) {
+                    swiped = newX < 0 ? -revealWidth : revealWidth;
+                } else {
+                    swiped = false;
+                }
+                window.requestAnimationFrame(() => {
+                    target.style.transition = null;
+                });
+                gesture.animationFrame = null;
+            });
+        });
+
+        gesture.on("panend", () => {
+            window.cancelAnimationFrame(gesture.animationFrame);
+            gesture.animationFrame = null;
+            window.requestAnimationFrame(() => {
+                target.style.transition = "transform .2s ease-in";
+                if (!swiped) {
+                    startOffset = 0;
+                    target.style.transform = null;
+                } else {
+                    startOffset = swiped;
+                    target.style.transform = "translateX(" + swiped + "px)";
+                }
+            });
+        });
+
+        // reset on tap
+        gesture.on("doubletap", (event) => {
+            // we could also use 'doubletap' here
+            window.requestAnimationFrame(() => {
+                target.style.transition = "transform .2s ease-in";
+                swiped = false;
+                startOffset = 0;
+                target.style.transform = null;
+            });
+        });
+
+        const saveButton = this.$el.parentElement.querySelector('.reveal-right')
+        const shareButton = this.$el.parentElement.querySelector('.reveal-left')
+
+        saveButton.addEventListener('click', (event) => {
+
+        })
+
+        shareButton.addEventListener('click', (event) => {
+            const shareData = {
+                title: this.title,
+                url: this.url
+            }
+            if (navigator.canShare(shareData)) {
+                navigator.share(shareData)
+            }
+        })
     },
 
     handleData(data) {
         this.title = data.title
         this.url = data.url
-        if(!this.url){
-            this.url = '/item.html?id='+this.id
+        if (!this.url) {
+            this.url = '/item.html?id=' + this.id
         }
         this.score = data.score
         this.by = data.by
@@ -103,7 +227,7 @@ export default (initialID = null) => ({
 
                 let button = document.createElement('button')
                 button.innerText = 'hide replies'
-                button.classList.add('ml-2','inline-block', 'rounded-md', 'px-4', 'py-2', 'text-sm', 'focus:relative', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400', 'dark:hover:text-gray-200', 'focus:text-white', 'bg-gray-200','dark:bg-gray-800')
+                button.classList.add('ml-2', 'inline-block', 'rounded-md', 'px-4', 'py-2', 'text-sm', 'focus:relative', 'text-gray-500', 'hover:text-gray-700', 'dark:text-gray-400', 'dark:hover:text-gray-200', 'focus:text-white', 'bg-gray-200', 'dark:bg-gray-800')
 
                 let authorA = document.createElement('a')
                 authorA.href = 'https://news.ycombinator.com/user?id=' + child.author

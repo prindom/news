@@ -9,6 +9,7 @@ import nav from './nav'
 import list from './list'
 import search from './search'
 import navbutton from "./navbutton";
+import TinyGesture from 'tinygesture';
 
 
 // redirect to same location with url param type=new if no url param type is set
@@ -36,4 +37,7 @@ Alpine.data('themeToggle', themeToggle)
 
 
 Alpine.start()
+
+
+
 
