@@ -14,7 +14,7 @@ import TinyGesture from 'tinygesture';
 
 // redirect to same location with url param type=new if no url param type is set
 if (window.location.search === '') {
-    window.location = window.location.origin + "?type=new"
+    window.location = window.location.origin + "?type=top"
 }
 
 
