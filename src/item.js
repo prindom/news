@@ -162,7 +162,7 @@ export default (initialID = null) => ({
         if (data.text) {
             let element = document.createElement('div')
             element.innerHTML = data.text
-            this.text = element.innerText
+            this.text = element.innerHTML
         } else {
             this.text = this.url
         }
@@ -204,7 +204,7 @@ export default (initialID = null) => ({
             if (data.text) {
                 let element = document.createElement('div')
                 element.innerHTML = data.text
-                this.text = element.innerText
+                this.text = element.innerHTML
             } else {
                 this.text = this.url
             }
