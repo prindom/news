@@ -18,7 +18,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: www44.your-server.de
-        username: redsla
+        username: redsla_0
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftps
         local-dir: ./dist/
