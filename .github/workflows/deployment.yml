@@ -1,16 +1,25 @@
-name: Deploy to Server
-
-on:
-  push:
-    branches:
-      - master
-
+on: push
+name: 🚀 Deploy website on push
 jobs:
-  deploy:
-    runs-on: self-hosted
-
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
     steps:
-      - name: Deploy code
-        run: cd /var/www/news && git pull origin master && npm install && npm run build
-          # Verwende das Secret in deinem Workflow
-          # Beispiel: echo ${{ secrets.SERVER_PASSWORD }}
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    - name: node build dist
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    - run: npm i
+    - run: npm run build
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: www44.your-server.de
+        username: redsla
+        password: ${{ secrets.ftp_password }}
+        protocol: ftps
+        local-dir: :/dist/
+        server-dir: ./
