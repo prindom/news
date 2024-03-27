@@ -78,7 +78,7 @@
                          class="relative flex min-h-screen items-center justify-center p-4">
                         <div x-on:click.stop x-trap.noscroll.inert="open"
                              class="relative w-full max-w-2xl overflow-y-auto rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25">
-                            <div class="p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900">
+                            <div class="p-0.5 sm:p-1 lg:p-1.5 rounded-[10px] bg-white !pt-1.5 dark:bg-gray-900">
                                 <!-- Title
                                 <h2 class="text-3xl font-bold text-gray-600 dark:text-gray-300" :id="$id('modal-title')">Search</h2>-->
                                 <div class="relative">
@@ -89,7 +89,7 @@
                                             id="Search"
                                             x-ref="searchInput"
                                             placeholder="Search for..."
-                                            class="w-full rounded-md border-gray-200 py-2.5 p-10 shadow-sm sm:text-sm"
+                                            class="block w-full appearance-none bg-transparent py-4 pl-4 pr-12 text-base text-slate-900 placeholder:text-slate-600 focus:outline-none sm:text-sm sm:leading-6 focus-visible"
                                     />
 
                                     <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
