@@ -23,3 +23,11 @@ jobs:
         protocol: ftps
         local-dir: ./dist/
         server-dir: ./
+    - name: 🎉 Done & send pushover notification
+      run: |
+        curl -s \
+          --form-string "token=${{ secrets.PUSHOVER_TOKEN }}" \
+          --form-string "user=${{ secrets.PUSHOVER_USER }}" \
+          --form-string "message=news.redslate.net deployed" \
+          --form-string "url=https://news.redslate.net" \
+          https://api.pushover.net/1/messages.json
