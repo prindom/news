@@ -2,35 +2,39 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - '*.html'
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-    - name: node build dist
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - run: npm i
-    - run: npm run build
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: www44.your-server.de
-        username: redsla_0
-        password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftps
-        local-dir: ./dist/
-        server-dir: ./
-    - name: 🎉 Done & send pushover notification
-      run: |
-        curl -s \
-          --form-string "token=${{ secrets.PUSHOVER_TOKEN }}" \
-          --form-string "user=${{ secrets.PUSHOVER_USER }}" \
-          --form-string "message=news.redslate.net deployed" \
-          --form-string "url=https://news.redslate.net" \
-          https://api.pushover.net/1/messages.json
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+      - name: node build dist
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm i
+      - run: npm run build
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: www44.your-server.de
+          username: redsla_0
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ./
+      - name: 🎉 Done & send pushover notification
+        run: |
+          curl -s \
+            --form-string "token=${{ secrets.PUSHOVER_TOKEN }}" \
+            --form-string "user=${{ secrets.PUSHOVER_USER }}" \
+            --form-string "message=news.redslate.net deployed" \
+            --form-string "url=https://news.redslate.net" \
+            https://api.pushover.net/1/messages.json
