@@ -14,7 +14,7 @@
   "dependencies": {
     "@alpinejs/focus": "^3.13.7",
     "@alpinejs/intersect": "^3.13.0",
-    "alpinejs": "^3.13.0",
+    "alpinejs": "^3.13.8",
     "cross-env": "^7.0.3",
     "tinygesture": "^3.0.0"
   },
