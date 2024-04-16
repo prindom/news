@@ -13,8 +13,8 @@
 
 <body>
 <div id="app"
-     class="flex min-h-screen flex-col items-center justify-between py-4 text-center dark:bg-gray-800 p-3 selection:bg-green-100 max-w-full overflow-x-hidden">
-    <div x-data="nav" class="flex items-center justify-center">
+     class="flex min-h-screen !lg:flex-col !lg:items-center !lg:justify-between py-4 text-center dark:bg-gray-800 p-3 selection:bg-green-100 max-w-full overflow-x-hidden">
+    <div x-data="nav" class="flex items-center justify-center lg:hidden">
         <div class="max-w-min mb-3 inline-flex rounded-lg border border-gray-100 p-1 bg-gray-100  dark:border-gray-800 dark:bg-gray-900">
             <button @click="$store.current = 'top'; window.location = window.location.origin + '?type=top'"
                     :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'top' }"
@@ -47,7 +47,7 @@
         <div class="max-w-min mb-3 inline-flex rounded-lg border border-gray-100 bg-gray-100 dark:border-gray-800 dark:bg-gray-900 p-1">
             <button id="theme-toggle" type="button" x-data="themeToggle" @click="toggle()"
                     class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2 text-center">
-                <i class="hidden fa-solid fa-moon" id="theme-toggle-dark-icon" :class="{ 'hidden':  dark }" ></i>
+                <i class="hidden fa-solid fa-moon" id="theme-toggle-dark-icon" :class="{ 'hidden':  dark }"></i>
                 <i class="fa-solid fa-sun hidden" id="theme-toggle-light-icon" :class="{ 'hidden': ! dark }"></i>
             </button>
             <button id="reload" type="button" @click="window.location.reload()"
@@ -105,6 +105,78 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="lg:flex min-w-fit sm:hidden md:hidden">
+        <ul class="flex flex-col space-y-2">
+            <li>
+                <strong class="block text-xs font-medium uppercase text-gray-400"> Lists </strong>
+                <ul x-data="nav" class="mt-2 space-y-1">
+                    <li>
+                        <a @click="$store.current = 'top'; window.location = window.location.origin + '?type=top'"
+                           href="#" class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700"
+                           :class="{ 'bg-gray-100 dark:bg-gray-900': $store.current === 'top' }">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>top</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="$store.current = 'new'; window.location = window.location.origin + '?type=new'"
+                           href="#" class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700"
+                           :class="{ 'bg-gray-100 dark:bg-gray-900': $store.current === 'new' }">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>new</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="$store.current = 'show'; window.location = window.location.origin + '?type=show'"
+                           href="#" class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700"
+                           :class="{ 'bg-gray-100 dark:bg-gray-900': $store.current === 'show' }">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>show</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="$store.current = 'best'; window.location = window.location.origin + '?type=best'"
+                           href="#" class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700"
+                           :class="{ 'bg-gray-100 dark:bg-gray-900': $store.current === 'best' }">
+                            <i class="fa-solid fa-star"></i>
+                            <span>best</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong class="block text-xs font-medium uppercase text-gray-400"> Settings </strong>
+                <ul x-data="nav" class="mt-2 space-y-1">
+                    <li>
+                        <a @click="$store.current = 'search'; window.location = window.location.origin + '?type=search'"
+                           href="#" class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700"
+                           :class="{ 'bg-gray-100 dark:bg-gray-900': $store.current === 'search' }">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>search</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <button x-data="themeToggle" @click="toggle()"
+                                class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700">
+                            <i class="fa-solid fa-moon" id="theme-toggle-dark-icon" :class="{ 'hidden':  dark }"></i>
+                            <i class="fa-solid fa-sun hidden" id="theme-toggle-light-icon"
+                               :class="{ 'hidden': ! dark }"></i>
+                            <span>theme</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="window.location.reload()"
+                                class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700">
+                            <i class="fa-solid fa-rotate"></i> <span>reload</span>
+                        </button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
     </div>
 
     <div id="articles" x-data="list" class="mx-auto container">
