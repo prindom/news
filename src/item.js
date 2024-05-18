@@ -134,11 +134,11 @@ export default (initialID = null) => ({
         const saveButton = this.$el.parentElement.querySelector('.reveal-right')
         const shareButton = this.$el.parentElement.querySelector('.reveal-left')
 
-        saveButton.addEventListener('click', (event) => {
-
+        saveButton?.addEventListener('click', (event) => {
+            // todo save item
         })
 
-        shareButton.addEventListener('click', (event) => {
+        shareButton?.addEventListener('click', (event) => {
             const shareData = {
                 title: this.title,
                 url: this.url
