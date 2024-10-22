@@ -20,6 +20,9 @@ export default (initialID = null) => ({
         this.open = !this.open
     },
 
+    maximize() {
+        this.$el.querySelector('.line-clamp-2').classList.toggle('line-clamp-none');
+    },
 
     async init() {
         if (this.id == null) {
@@ -133,6 +136,7 @@ export default (initialID = null) => ({
 
         const saveButton = this.$el.parentElement.querySelector('.reveal-right')
         const shareButton = this.$el.parentElement.querySelector('.reveal-left')
+        const maximizeButton = this.$el.parentElement.querySelector('.maximize-button')
 
         saveButton?.addEventListener('click', (event) => {
             // todo save item
@@ -146,6 +150,10 @@ export default (initialID = null) => ({
             if (navigator.canShare(shareData)) {
                 navigator.share(shareData)
             }
+        })
+
+        maximizeButton?.addEventListener('click', (event) => {
+            this.maximize()
         })
     },
 
