@@ -77,7 +77,7 @@ export default (initialID = null) => ({
 
         const target = this.$el
         const gesture = new TinyGesture(target, options)
-        // swipe gestures
+
         gesture.on('panmove', () => {
             if (gesture.animationFrame) {
                 return
