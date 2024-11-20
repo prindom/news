@@ -1,0 +1,12 @@
+{
+    "require": {
+        "notrab/dumbo": "^1.0",
+        "smarty/smarty": "^5.4"
+    },
+    "scripts": {
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S localhost:8000 -t public"
+        ]
+    }
+}
