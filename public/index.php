@@ -36,17 +36,11 @@ $app->use(function ($context, $next) {
 });
 
 $app->get('/', function ($context) {
-    return $context->view('index.tpl', [
-        'message' => "Hello Smarty!",
-        'timestamp' => time()
-    ]);
+    return $context->view('index.tpl', []);
 });
 
-$app->get('/smarty', function ($context) {
-    return $context->view('index.tpl', [
-        'message' => "Hello Smarty!",
-        'timestamp' => time()
-    ]);
+$app->get('/item/:id', function ($context) {
+    return $context->view('item.tpl', []);
 });
 
 $app->get('/users/:id', function ($context) {
