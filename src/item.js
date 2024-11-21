@@ -21,7 +21,8 @@ export default (initialID = null) => ({
 
     async init() {
         if (this.id == null) {
-            this.id = new URLSearchParams(window.location.search).get('id')
+            // get id from url path /item/:id
+            this.id = window.location.pathname.split('/').pop()
             this.loadWithChildren()
         }
 

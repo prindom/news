@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <meta
             name="viewport"
             content="viewport-fit=cover, width=device-width, initial-scale=1.0"
@@ -12,7 +12,7 @@
             name="description"
             content="a news feed based on the hackernews api"
     />
-    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="manifest" href="/manifest.webmanifest" />
 
     <script
             src="https://kit.fontawesome.com/7d20ea0579.js"

@@ -10,11 +10,6 @@ import list from './list'
 import search from './search'
 import navbutton from './navbutton'
 
-// redirect to same location with url param type=new if no url param type is set
-if (window.location.search === '') {
-    window.location = window.location.origin + '?type=top'
-}
-
 Alpine.plugin(intersect)
 Alpine.plugin(focus)
 

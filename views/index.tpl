@@ -80,7 +80,7 @@
                                 <div
                                         class="flex items-center gap-1 text-gray-500 hover:underline hover:cursor-pointer"
                                 >
-                                    <a :href='"/item.html?id="+id' class="text-xs flex">
+                                    <a :href='"/item/"+id' class="text-xs flex">
                                         <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 fill="none"
