@@ -11,7 +11,7 @@
     "prettier": "3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "vitawind": "^2.3.0",
-    "vite": "^6.2.0"
+    "vite": "^6.3.0"
   },
   "dependencies": {
     "@alpinejs/focus": "^3.14.8",
