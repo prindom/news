@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
-    "eslint": "^9.21.0",
+    "eslint": "^9.25.1",
     "prettier": "3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "vitawind": "^2.3.0",
