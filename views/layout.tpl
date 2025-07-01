@@ -21,7 +21,7 @@
 
     <!-- import Inter font from cdn -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <link rel="stylesheet" href="/dist/css/style.css" />
+    <link rel="stylesheet" href="/dist/css/hn-news.css" />
 </head>
 <body>
 <div
