@@ -12,7 +12,7 @@ export default defineConfig({
             output: {
                 assetFileNames: (assetInfo) => {
                      if (assetInfo.name.endsWith('.css')) {
-                         return `css/${assetInfo.name}`
+                         return `css/style.css`
                      }
                      if (assetInfo.name.endsWith('.js')) {
                          return `js/${assetInfo.name}`
