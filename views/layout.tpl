@@ -31,6 +31,16 @@
     {include file="navigation.tpl"}
 
 {block name="body"}{/block}
+
+    <!-- Footer -->
+    <footer class="mt-auto pt-8 pb-4 text-center">
+        <div class="text-sm text-gray-500 dark:text-gray-400">
+            Copyright © dprinzensteiner | 
+            <a href="mailto:contact@prinzensteiner.net" class="text-blue-500 hover:text-blue-400 hover:underline transition-all">
+                contact@prinzensteiner.net
+            </a>
+        </div>
+    </footer>
 </div>
 
 <script type="module" src="/dist/js/main.js"></script>
