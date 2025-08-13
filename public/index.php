@@ -47,6 +47,19 @@ $app->get('/demo', function ($context) {
     return $context->view('demo.tpl', []);
 });
 
+$app->get('/api/fruits', function ($context) {
+    return $context->json([
+        ['value' => 'apple', 'label' => 'Apple', 'color' => 'red'],
+        ['value' => 'banana', 'label' => 'Banana', 'color' => 'yellow'],
+        ['value' => 'orange', 'label' => 'Orange', 'color' => 'orange'],
+        ['value' => 'grape', 'label' => 'Grape', 'color' => 'purple'],
+        ['value' => 'strawberry', 'label' => 'Strawberry', 'color' => 'red'],
+        ['value' => 'kiwi', 'label' => 'Kiwi', 'color' => 'green'],
+        ['value' => 'mango', 'label' => 'Mango', 'color' => 'orange'],
+        ['value' => 'blueberry', 'label' => 'Blueberry', 'color' => 'blue'],
+    ]);
+});
+
 $app->get('/users/:id', function ($context) {
     $id = $context->req->param('id');
     return $context->json(['userId' => $id]);
