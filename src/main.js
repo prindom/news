@@ -9,6 +9,7 @@ import nav from './nav'
 import list from './list'
 import search from './search'
 import navbutton from './navbutton'
+import selectInput from './selectInput'
 
 Alpine.plugin(intersect)
 Alpine.plugin(focus)
@@ -21,6 +22,7 @@ Alpine.data('nav', nav)
 Alpine.data('list', list)
 Alpine.data('search', search)
 Alpine.data('navbutton', navbutton)
+Alpine.data('selectInput', selectInput)
 
 Alpine.data('item', item)
 Alpine.data('themeToggle', themeToggle)

@@ -43,6 +43,10 @@ $app->get('/item/:id', function ($context) {
     return $context->view('item.tpl', []);
 });
 
+$app->get('/demo', function ($context) {
+    return $context->view('demo.tpl', []);
+});
+
 $app->get('/users/:id', function ($context) {
     $id = $context->req->param('id');
     return $context->json(['userId' => $id]);
