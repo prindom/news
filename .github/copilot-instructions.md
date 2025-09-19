@@ -7,6 +7,7 @@ This is a HackerNews clone built with Vite + Vanilla JavaScript frontend and PHP
 ## Prerequisites & Environment Setup
 
 Ensure you have the required tools:
+
 - Node.js v20+ and npm v10+
 - PHP 8.3+ (with DOM extension for metadata parsing)
 - Composer v2.8+
@@ -16,6 +17,7 @@ Ensure you have the required tools:
 **CRITICAL TIMING**: Follow these exact steps in order. NEVER CANCEL long-running operations:
 
 ### 1. Install Dependencies
+
 ```bash
 # Install Node.js dependencies (takes ~8-10 seconds)
 npm install
@@ -26,17 +28,20 @@ composer install --no-interaction
 ```
 
 **COMPOSER TROUBLESHOOTING**: If composer install hangs asking for GitHub token:
+
 - Use `composer install --no-interaction` to avoid prompts
 - The installation will fallback to cloning from source (slower but works)
 - Total time: 60-90 minutes. DO NOT CANCEL.
 
 ### 2. Build the Frontend
+
 ```bash
 # Build production assets (takes ~1-2 seconds)
 npm run build
 ```
 
 **Build output**: Creates optimized CSS and JS files in `public/dist/`:
+
 - `public/dist/css/hn-news.css` (~15KB)
 - `public/dist/js/main.js` (~77KB)
 
@@ -61,6 +66,7 @@ composer start
 ## Development Workflow
 
 ### Code Quality & Linting
+
 ```bash
 # Lint JavaScript source code (excludes build output)
 npx eslint src/
@@ -80,29 +86,32 @@ npx eslint src/main.js src/item.js
 ## Application Testing & Validation
 
 ### Manual Validation Scenarios
+
 After making changes, ALWAYS test these scenarios:
 
 1. **Basic Navigation**:
-   - Visit http://localhost:8000/
-   - Click navigation buttons: "top", "new", "show", "best"
-   - Verify URL changes to `/?type=new`, etc.
-   - Test theme toggle (dark/light mode buttons)
+    - Visit http://localhost:8000/
+    - Click navigation buttons: "top", "new", "show", "best"
+    - Verify URL changes to `/?type=new`, etc.
+    - Test theme toggle (dark/light mode buttons)
 
 2. **News Loading** (May fail in restricted environments):
-   - News items should load from HackerNews API
-   - If blocked: External APIs (hacker-news.firebaseio.com, hn.algolia.com) may be blocked
-   - This is normal in sandbox environments - focus on UI/navigation testing
+    - News items should load from HackerNews API
+    - If blocked: External APIs (hacker-news.firebaseio.com, hn.algolia.com) may be blocked
+    - This is normal in sandbox environments - focus on UI/navigation testing
 
 3. **Individual Item View**:
-   - Visit http://localhost:8000/item/1 (or any number)
-   - Verify item page template loads
+    - Visit http://localhost:8000/item/1 (or any number)
+    - Verify item page template loads
 
 4. **Search Functionality**:
-   - Test search form submission
-   - Verify search results page behavior
+    - Test search form submission
+    - Verify search results page behavior
 
 ### Expected External Dependencies
+
 The application loads these external resources (may be blocked in restricted environments):
+
 - FontAwesome icons: `https://kit.fontawesome.com/7d20ea0579.js`
 - Inter font: `https://rsms.me/inter/inter.css`
 - HackerNews API: `https://hacker-news.firebaseio.com/v0/`
@@ -139,6 +148,7 @@ The application loads these external resources (may be blocked in restricted env
 ## Build & CI Information
 
 The `.github/workflows/deployment.yml` pipeline:
+
 1. Runs `npm i` (Node.js setup)
 2. Runs `npm run build` (builds frontend assets)
 3. Deploys via FTP to production server
@@ -148,18 +158,21 @@ The `.github/workflows/deployment.yml` pipeline:
 ## Common Development Tasks
 
 ### Making JavaScript Changes
+
 1. Edit files in `src/` directory
 2. Run `npm run build` to compile changes
 3. Test at http://localhost:8000/ (not localhost:5173)
 4. Run `npx eslint src/` before committing
 
 ### Making PHP/Template Changes
+
 1. Edit PHP files in `public/` or templates in `views/`
 2. No build step required - changes are immediate
 3. Test at http://localhost:8000/
 4. Check for PHP syntax errors in browser or server logs
 
 ### Making CSS/Styling Changes
+
 1. Edit `src/index.css` (uses Tailwind CSS)
 2. Run `npm run build` to recompile CSS
 3. CSS is processed through PostCSS + Tailwind + Autoprefixer
@@ -176,17 +189,20 @@ The `.github/workflows/deployment.yml` pipeline:
 ## Troubleshooting
 
 ### Build Issues
+
 - **npm install fails**: Check Node.js version (requires v20+)
 - **composer install hangs**: Use `--no-interaction` flag and wait 60+ minutes
 - **Build output missing**: Run `npm run build` before testing
 
 ### Runtime Issues
+
 - **Blank page**: Check PHP server is running on port 8000
 - **No news items**: External APIs may be blocked (normal in restricted environments)
 - **CSS not loading**: Ensure `npm run build` completed successfully
 - **JavaScript errors**: Check ESLint output and browser console
 
 ### Development Server Issues
+
 - **Port conflicts**: PHP server uses port 8000, Vite uses 5173
 - **Hot reload not working**: Use Vite dev server for CSS/JS development, PHP server for testing
 
