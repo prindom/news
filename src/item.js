@@ -263,6 +263,26 @@ export default (initialID = null) => ({
                 'underline'
             )
 
+            // Add OC badge if comment author is the same as the item author
+            if (child.author === this.by) {
+                let ocBadge = document.createElement('span')
+                ocBadge.innerText = ' OC'
+                ocBadge.classList.add(
+                    'ml-1',
+                    'inline-block',
+                    'px-1',
+                    'py-0.5',
+                    'text-xs',
+                    'font-semibold',
+                    'rounded',
+                    'bg-blue-100',
+                    'text-blue-800',
+                    'dark:bg-blue-900',
+                    'dark:text-blue-200'
+                )
+                authorA.appendChild(ocBadge)
+            }
+
             let dateSpan = document.createElement('span')
             dateSpan.innerText =
                 ' ' + new Date(child.created_at_i * 1000).toLocaleString()
