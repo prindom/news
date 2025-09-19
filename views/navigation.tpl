@@ -31,6 +31,20 @@
             <span>best</span>
         </button>
         <button
+                @click="$store.current = 'ask'; window.location = window.location.origin + '?type=ask'"
+                :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'ask' }"
+                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+        >
+            <span>ask</span>
+        </button>
+        <button
+                @click="$store.current = 'job'; window.location = window.location.origin + '?type=job'"
+                :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'job' }"
+                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+        >
+            <span>job</span>
+        </button>
+        <button
                 x-data="navbutton('search')"
                 @click="$store.current = 'search'; window.location = window.location.origin + '?type=search'"
                 :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'search' }"
