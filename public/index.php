@@ -1,6 +1,7 @@
 <?php
 
 require dirname(__DIR__) . '/vendor/autoload.php';
+require 'HackerNewsService.php';
 
 use Dumbo\Dumbo;
 use Smarty\Smarty;
@@ -36,7 +37,29 @@ $app->use(function ($context, $next) {
 });
 
 $app->get('/', function ($context) {
-    return $context->view('index.tpl', []);
+    // Get story type from query params, default to 'top'
+    $type = $context->req->query('type') ?: 'top';
+    
+    // Validate story type
+    $validTypes = ['top', 'new', 'show', 'best'];
+    if (!in_array($type, $validTypes)) {
+        $type = 'top';
+    }
+    
+    // Fetch initial articles for SEO
+    $hnService = new HackerNewsService();
+    $storyIds = $hnService->getStoryIds($type);
+    $articles = [];
+    
+    if ($storyIds) {
+        // Get first 10 articles for initial render
+        $articles = $hnService->getItems(array_slice($storyIds, 0, 10), 10);
+    }
+    
+    return $context->view('index.tpl', [
+        'articles' => $articles,
+        'currentType' => $type
+    ]);
 });
 
 $app->get('/item/:id', function ($context) {
