@@ -1,40 +1,54 @@
 <div x-data="nav" class="flex items-center justify-center">
     <div
-            class="max-w-min mb-3 inline-flex rounded-lg border border-gray-100 p-1 bg-gray-100 dark:border-gray-800 dark:bg-gray-900"
+            class="max-w-full mb-3 flex overflow-x-auto scrollbar-hide rounded-lg border border-gray-100 p-1 bg-gray-100 dark:border-gray-800 dark:bg-gray-900 sm:max-w-min sm:inline-flex sm:overflow-x-visible"
     >
         <button
                 @click="$store.current = 'top'; window.location = window.location.origin + '?type=top'"
                 :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'top' }"
-                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
         >
             <span>top</span>
         </button>
         <button
                 @click="$store.current = 'new'; window.location = window.location.origin + '?type=new'"
                 :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'new' }"
-                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
         >
             <span>new</span>
         </button>
         <button
                 @click="$store.current = 'show'; window.location = window.location.origin + '?type=show'"
                 :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'show' }"
-                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
         >
             <span>show</span>
         </button>
         <button
                 @click="$store.current = 'best'; window.location = window.location.origin + '?type=best'"
                 :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'best' }"
-                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
         >
             <span>best</span>
+        </button>
+        <button
+                @click="$store.current = 'ask'; window.location = window.location.origin + '?type=ask'"
+                :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'ask' }"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
+        >
+            <span>ask</span>
+        </button>
+        <button
+                @click="$store.current = 'job'; window.location = window.location.origin + '?type=job'"
+                :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'job' }"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
+        >
+            <span>job</span>
         </button>
         <button
                 x-data="navbutton('search')"
                 @click="$store.current = 'search'; window.location = window.location.origin + '?type=search'"
                 :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'search' }"
-                class="inline-block rounded-md px-4 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white"
+                class="flex-shrink-0 rounded-md px-3 py-2 text-sm focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white whitespace-nowrap"
         >
             <span>search</span>
         </button>
