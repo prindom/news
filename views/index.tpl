@@ -49,7 +49,7 @@
                             >{$article.title|default:'Untitled'}</a>
                         </h3>
 
-                        {if $article.text}
+                        {if isset($article['text'])}
                         <p class="line-clamp-2 text-sm text-gray-700">
                             {$article.text|strip_tags|truncate:200}
                         </p>

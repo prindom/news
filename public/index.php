@@ -52,8 +52,8 @@ $app->get('/', function ($context) {
     $articles = [];
     
     if ($storyIds) {
-        // Get first 30 articles for initial render
-        $articles = $hnService->getItems(array_slice($storyIds, 0, 30), 30);
+        // Get first 10 articles for initial render
+        $articles = $hnService->getItems(array_slice($storyIds, 0, 10), 10);
     }
     
     return $context->view('index.tpl', [
