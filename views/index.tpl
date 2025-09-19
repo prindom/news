@@ -4,6 +4,12 @@
         // Initialize Alpine store with server-side data
         document.addEventListener('alpine:init', () => {
             Alpine.store('current', '{$currentType|default:"top"}')
+            // Store IDs of server-rendered articles to avoid duplicates
+            Alpine.store('serverRenderedIds', [
+                {foreach $articles as $article}
+                {$article.id}{if !$article@last},{/if}
+                {/foreach}
+            ])
         })
     </script>
     <div
