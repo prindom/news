@@ -16,7 +16,7 @@
 
     <script>
   window.vmtrcq = window.vmtrcq || [];
-  window.vmtrc = window.vmtrc || function (){window.vmtrcq.push(Array.prototype.slice.call(arguments))};
+  window.vmtrc = window.vmtrc || function (){ window.vmtrcq.push(Array.prototype.slice.call(arguments))};
 </script>
 <script defer src="https://cdn.vemetric.com/main.js" id="vmtrc-scr" data-token="otsG5HYZINKUWlvn"></script>
 
