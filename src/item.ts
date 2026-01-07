@@ -168,7 +168,7 @@ export default (initialID = 0) => ({
         this.title = data.title
         this.url = data.url
         if (!this.url) {
-            this.url = '/item.html?id=' + this.id
+            this.url = '/item/' + this.id
         }
         this.score = data.score
         this.by = data.by
@@ -177,7 +177,7 @@ export default (initialID = 0) => ({
         if (data.text) {
             let element = document.createElement('div')
             element.innerHTML = data.text
-            this.text = element.innerHTML
+            this.text = element.textContent || ''
         } else {
             this.text = this.url
         }
@@ -217,6 +217,9 @@ export default (initialID = 0) => ({
                 this.id = data.objectID
                 this.title = data.title
                 this.url = data.url
+                if (!this.url) {
+                    this.url = '/item/' + this.id
+                }
                 this.score = data.points
                 this.by = data.author
                 this.time = data.created_at_i
@@ -224,7 +227,7 @@ export default (initialID = 0) => ({
                 if (data.text) {
                     let element = document.createElement('div')
                     element.innerHTML = data.text
-                    this.text = element.innerHTML
+                    this.text = element.textContent || ''
                 } else {
                     this.text = this.url
                 }
@@ -258,6 +261,7 @@ export default (initialID = 0) => ({
             authorA.href =
                 'https://news.ycombinator.com/user?id=' + child.author
             authorA.target = '_blank'
+            authorA.rel = 'noopener noreferrer'
             authorA.innerText = child.author
             authorA.classList.add(
                 'text-gray-500',

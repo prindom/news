@@ -26,7 +26,7 @@
 <body>
 <div
         id="app"
-        class="flex min-h-screen flex-col items-center justify-between py-4 text-center dark:bg-gray-800 p-3 selection:bg-green-100 max-w-full overflow-x-hidden"
+        class="flex min-h-screen flex-col items-center justify-between py-4 text-center dark:bg-gray-800 p-3 selection:bg-green-100 max-w-full overflow-x-hidden pb-24 md:pb-3"
 >
     {include file="navigation.tpl"}
 

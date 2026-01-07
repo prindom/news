@@ -14,12 +14,13 @@
                     <a
                             :href="url"
                             target="_blank"
+                            rel="noopener noreferrer"
                             class="hover:underline text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
                             x-text="title"
                     ></a>
                 </h3>
 
-                <p class="text-sm text-gray-600" x-show="text != ''" x-html="text">
+                <p class="text-sm text-gray-600" x-show="text != ''" x-text="text">
                     loading ...
                 </p>
 
@@ -48,7 +49,7 @@
                     <div
                             class="flex items-center gap-1 text-gray-500 hover:underline hover:cursor-pointer"
                     >
-                        <a :href='"/item.html?id="+id' class="text-xs flex">
+                        <a :href='"/item/"+id' class="text-xs flex">
                             <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -73,6 +74,7 @@
                         Posted by
                         <a
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 :href="by_url"
                                 class="font-medium underline hover:text-gray-700"
                                 x-text="by"
@@ -113,5 +115,5 @@
                     class="text-left flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900 text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
             ></ul>
         </section>
-</div>
+    </div>
 {/block}
