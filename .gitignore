@@ -119,3 +119,5 @@ dist
 
 vendor/
 cache/
+
+.idea
