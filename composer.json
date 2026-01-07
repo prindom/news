@@ -1,7 +1,8 @@
 {
     "require": {
         "notrab/dumbo": "^1.0",
-        "smarty/smarty": "^5.4"
+        "smarty/smarty": "^5.4",
+        "vemetric/vemetric-php": "^0.1.0"
     },
     "scripts": {
         "start": [
