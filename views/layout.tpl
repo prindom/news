@@ -14,6 +14,12 @@
     />
     <link rel="manifest" href="/manifest.webmanifest" />
 
+    <script>
+  window.vmtrcq = window.vmtrcq || [];
+  window.vmtrc = window.vmtrc || function (){ window.vmtrcq.push(Array.prototype.slice.call(arguments))};
+</script>
+<script defer src="https://cdn.vemetric.com/main.js" id="vmtrc-scr" data-token="otsG5HYZINKUWlvn"></script>
+
     <script
             src="https://kit.fontawesome.com/7d20ea0579.js"
             crossorigin="anonymous"
@@ -35,7 +41,7 @@
     <!-- Footer -->
     <footer class="mt-auto pt-8 pb-4 text-center">
         <div class="text-sm text-gray-500 dark:text-gray-400">
-            Copyright © dprinzensteiner | 
+            Copyright © dprinzensteiner |
             <a href="mailto:contact@prinzensteiner.net" class="text-blue-500 hover:text-blue-400 hover:underline transition-all">
                 contact@prinzensteiner.net
             </a>
