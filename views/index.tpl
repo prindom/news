@@ -6,7 +6,7 @@
                 <button
                         type="button"
                         aria-label="Save story"
-                        class="cursor-pointer reveal-right bg-transparent border-0 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2"
+                        class="cursor-pointer reveal-right bg-transparent border-0 text-content-secondary hover:bg-surface-hover rounded-lg text-sm p-2"
                 >
                     <!-- save icon -->
                     <svg
@@ -27,10 +27,10 @@
                 <article
                         x-data="item(article)"
                         x-intersect.once="loadFull"
-                        class="z-20 article mb-3 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25"
+                        class="z-20 article mb-3 rounded-xl card-gradient p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] shadow-theme"
                 >
                     <div
-                            class="z-20 flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900"
+                            class="z-20 flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-surface !pt-8"
                     >
                         <!--<img :src="image" alt="image" class="w-12 h-12 rounded shadow-lg" />-->
 
@@ -39,13 +39,13 @@
                                     :href="url"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="hover:underline text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                                    class="hover:underline text-content hover:text-content-heading"
                                     x-text="title"
                             ></a>
                         </h3>
 
                         <p
-                                class="line-clamp-2 text-sm text-gray-700"
+                                class="line-clamp-2 text-sm text-content-heading"
                                 x-show="text != ''"
                                 x-text="text"
                         >
@@ -53,7 +53,7 @@
                         </p>
 
                         <div class="mt-2 sm:flex sm:items-center sm:gap-2">
-                            <div class="flex items-center gap-1 text-gray-500">
+                            <div class="flex items-center gap-1 text-content-secondary">
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -77,7 +77,7 @@
                             >
 
                             <div
-                                    class="flex items-center gap-1 text-gray-500 hover:underline hover:cursor-pointer"
+                                    class="flex items-center gap-1 text-content-secondary hover:underline hover:cursor-pointer"
                             >
                                 <a :href='"/item/"+id' class="text-xs flex">
                                     <svg
@@ -103,13 +103,13 @@
                             >&middot;</span
                             >
 
-                            <p class="hidden sm:block sm:text-xs sm:text-gray-500">
+                            <p class="hidden sm:block sm:text-xs sm:text-content-secondary">
                                 Posted by
                                 <a
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         :href="by_url"
-                                        class="font-medium underline hover:text-gray-700"
+                                        class="font-medium underline hover:text-content-heading"
                                         x-text="by"
                                 ></a>
                             </p>
@@ -118,7 +118,7 @@
                             >&middot;</span
                             >
 
-                            <div class="flex items-center gap-1 text-gray-500">
+                            <div class="flex items-center gap-1 text-content-secondary">
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -145,7 +145,7 @@
                 <button
                         type="button"
                         aria-label="Share story"
-                        class="cursor-pointer reveal-left bg-transparent border-0 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2"
+                        class="cursor-pointer reveal-left bg-transparent border-0 text-content-secondary hover:bg-surface-hover rounded-lg text-sm p-2"
                 >
                     <!-- share icon -->
                     <svg

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="default">
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
@@ -32,7 +32,7 @@
 <body>
 <div
         id="app"
-        class="flex min-h-screen flex-col items-center justify-between py-4 text-center dark:bg-gray-800 p-3 selection:bg-green-100 max-w-full overflow-x-hidden pb-24 md:pb-3"
+        class="flex min-h-screen flex-col items-center justify-between py-4 text-center bg-surface-secondary p-3 selection:bg-green-100 max-w-full overflow-x-hidden pb-24 md:pb-3"
 >
     {include file="navigation.tpl"}
 
@@ -40,9 +40,9 @@
 
     <!-- Footer -->
     <footer class="mt-auto pt-8 pb-4 text-center">
-        <div class="text-sm text-gray-500 dark:text-gray-400">
+        <div class="text-sm text-content-secondary">
             Copyright © dprinzensteiner |
-            <a href="mailto:contact@prinzensteiner.net" class="text-blue-500 hover:text-blue-400 hover:underline transition-all">
+            <a href="mailto:contact@prinzensteiner.net" class="text-accent hover:text-accent-hover hover:underline transition-all">
                 contact@prinzensteiner.net
             </a>
         </div>

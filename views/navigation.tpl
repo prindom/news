@@ -6,14 +6,14 @@
 >
     <div class="mx-auto w-full px-3 pb-3 md:container md:px-0 md:pb-0">
         <div
-                class="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-gray-100 bg-gray-100 p-2 shadow-lg dark:border-gray-800 dark:bg-gray-900 md:shadow-sm"
+                class="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-edge-secondary bg-surface-secondary p-2 shadow-lg md:shadow-sm"
         >
             <div class="flex items-center gap-2">
                 <div class="relative md:hidden" x-data="{ typesOpen: false }" @click.outside="typesOpen = false">
                     <button
                             type="button"
                             @click="typesOpen = !typesOpen"
-                            class="inline-flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-100 px-4 py-2 text-sm text-gray-600 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+                            class="inline-flex items-center gap-2 rounded-lg border border-edge bg-surface-secondary px-4 py-2 text-sm text-content shadow-sm"
                     >
                         <span class="capitalize" x-text="$store.current"></span>
                         <svg
@@ -34,66 +34,66 @@
                             x-cloak
                             x-show="typesOpen"
                             x-transition
-                            class="absolute bottom-full left-0 mb-2 w-56 rounded-xl border border-gray-100 bg-white p-2 shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                            class="absolute bottom-full left-0 mb-2 w-56 rounded-xl border border-edge bg-surface p-2 shadow-lg"
                     >
                         <button
                                 @click="$store.current = 'top'; window.location = window.location.origin + '?type=top'; typesOpen = false"
-                                :class="{ 'bg-gray-100 dark:bg-gray-800': $store.current === 'top' }"
-                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+                                :class="{ 'bg-surface-secondary': $store.current === 'top' }"
+                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-content hover:bg-surface-tertiary"
                         >
                             top
                         </button>
                         <button
                                 @click="$store.current = 'new'; window.location = window.location.origin + '?type=new'; typesOpen = false"
-                                :class="{ 'bg-gray-100 dark:bg-gray-800': $store.current === 'new' }"
-                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+                                :class="{ 'bg-surface-secondary': $store.current === 'new' }"
+                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-content hover:bg-surface-tertiary"
                         >
                             new
                         </button>
                         <button
                                 @click="$store.current = 'show'; window.location = window.location.origin + '?type=show'; typesOpen = false"
-                                :class="{ 'bg-gray-100 dark:bg-gray-800': $store.current === 'show' }"
-                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+                                :class="{ 'bg-surface-secondary': $store.current === 'show' }"
+                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-content hover:bg-surface-tertiary"
                         >
                             show
                         </button>
                         <button
                                 @click="$store.current = 'best'; window.location = window.location.origin + '?type=best'; typesOpen = false"
-                                :class="{ 'bg-gray-100 dark:bg-gray-800': $store.current === 'best' }"
-                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
+                                :class="{ 'bg-surface-secondary': $store.current === 'best' }"
+                                class="block w-full rounded-lg px-4 py-3 text-left text-sm text-content hover:bg-surface-tertiary"
                         >
                             best
                         </button>
                     </div>
                 </div>
                 <div
-                        class="hidden md:inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1 dark:border-gray-800 dark:bg-gray-900 md:border-0 md:bg-transparent md:p-0"
+                        class="hidden md:inline-flex rounded-lg border border-edge bg-surface-secondary p-1 md:border-0 md:bg-transparent md:p-0"
                 >
                     <button
                             @click="$store.current = 'top'; window.location = window.location.origin + '?type=top'"
-                            :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'top' }"
-                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white md:px-4 md:py-2 md:text-sm"
+                            :class="{ 'bg-surface-active': $store.current === 'top' }"
+                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-content-secondary hover:text-content-heading focus:text-white md:px-4 md:py-2 md:text-sm"
                     >
                         <span>top</span>
                     </button>
                     <button
                             @click="$store.current = 'new'; window.location = window.location.origin + '?type=new'"
-                            :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'new' }"
-                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white md:px-4 md:py-2 md:text-sm"
+                            :class="{ 'bg-surface-active': $store.current === 'new' }"
+                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-content-secondary hover:text-content-heading focus:text-white md:px-4 md:py-2 md:text-sm"
                     >
                         <span>new</span>
                     </button>
                     <button
                             @click="$store.current = 'show'; window.location = window.location.origin + '?type=show'"
-                            :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'show' }"
-                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white md:px-4 md:py-2 md:text-sm"
+                            :class="{ 'bg-surface-active': $store.current === 'show' }"
+                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-content-secondary hover:text-content-heading focus:text-white md:px-4 md:py-2 md:text-sm"
                     >
                         <span>show</span>
                     </button>
                     <button
                             @click="$store.current = 'best'; window.location = window.location.origin + '?type=best'"
-                            :class="{ 'bg-gray-200 dark:bg-gray-800': $store.current === 'best' }"
-                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:text-white md:px-4 md:py-2 md:text-sm"
+                            :class="{ 'bg-surface-active': $store.current === 'best' }"
+                            class="inline-block rounded-md px-3 py-1.5 text-xs focus:relative text-content-secondary hover:text-content-heading focus:text-white md:px-4 md:py-2 md:text-sm"
                     >
                         <span>best</span>
                     </button>
@@ -110,10 +110,10 @@
                                 readonly
                                 aria-label="Open search"
                                 @focus="open = true; $nextTick(() => $refs.searchInput && $refs.searchInput.focus())"
-                                class="w-64 rounded-lg border border-gray-200 bg-white px-4 py-2.5 pl-12 pr-16 text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/30 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder:text-gray-500 cursor-pointer"
+                                class="w-64 rounded-lg border border-edge-secondary bg-surface px-4 py-2.5 pl-12 pr-16 text-sm text-content placeholder:text-content-secondary focus:outline-none focus:ring-2 focus:ring-accent/30 cursor-pointer"
                         />
                         <span
-                                class="pointer-events-none absolute inset-y-0 left-3 inline-flex items-center gap-2 text-xs text-gray-400 dark:text-gray-400"
+                                class="pointer-events-none absolute inset-y-0 left-3 inline-flex items-center gap-2 text-xs text-content-secondary"
                                 :aria-label="isMac ? 'Cmd+K' : 'Ctrl+K'"
                         >
                             <svg
@@ -130,10 +130,10 @@
                                         d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                                 />
                             </svg>
-                            <span class="text-gray-500 dark:text-gray-300">Search</span>
+                            <span class="text-content-secondary">Search</span>
                         </span>
                         <span
-                                class="pointer-events-none absolute inset-y-0 right-3 inline-flex items-center gap-1 text-xs text-gray-400 dark:text-gray-400"
+                                class="pointer-events-none absolute inset-y-0 right-3 inline-flex items-center gap-1 text-xs text-content-secondary"
                                 :aria-label="isMac ? 'Cmd+K' : 'Ctrl+K'"
                         >
                             <svg
@@ -151,7 +151,7 @@
                             <span
                                     x-cloak
                                     x-show="!isMac"
-                                    class="font-medium text-gray-500 dark:text-gray-300"
+                                    class="font-medium text-content-secondary"
                             >
                                 Ctrl
                             </span>
@@ -164,7 +164,7 @@
                             type="button"
                             @click="open = true; $nextTick(() => $refs.searchInput && $refs.searchInput.focus())"
                             aria-label="Open search"
-                            class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2 text-center h-full"
+                            class="md:hidden text-content-secondary hover:bg-surface-hover rounded-lg text-sm p-2 text-center h-full"
                     >
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -207,13 +207,13 @@
                             <div
                                     x-on:click.stop
                                     x-trap.noscroll.inert="open"
-                                    class="relative w-full max-w-2xl overflow-y-auto rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25"
+                                    class="relative w-full max-w-2xl overflow-y-auto rounded-xl card-gradient p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] shadow-theme"
                             >
                                 <div
-                                        class="p-0.5 sm:p-1 lg:p-1.5 rounded-[10px] bg-white !pt-1.5 dark:bg-gray-900"
+                                        class="p-0.5 sm:p-1 lg:p-1.5 rounded-[10px] bg-surface !pt-1.5"
                                 >
                                     <!-- Title
-                                                <h2 class="text-3xl font-bold text-gray-600 dark:text-gray-300" :id="$id('modal-title')">Search</h2>-->
+                                                <h2 class="text-3xl font-bold text-content" :id="$id('modal-title')">Search</h2>-->
                                     <div class="relative">
                                         <label for="Search" class="sr-only"> Search </label>
 
@@ -222,7 +222,7 @@
                                                 id="Search"
                                                 x-ref="searchInput"
                                                 placeholder="Search for..."
-                                                class="block w-full appearance-none bg-transparent py-4 pl-4 pr-12 text-base focus:outline-none sm:text-sm sm:leading-6 focus-visible text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                                                class="block w-full appearance-none bg-transparent py-4 pl-4 pr-12 text-base focus:outline-none sm:text-sm sm:leading-6 focus-visible text-content hover:text-content-heading"
                                         />
 
                                         <span
@@ -230,7 +230,7 @@
                                         >
                                 <button
                                         type="button"
-                                        class="text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                                        class="text-content hover:text-content-heading"
                                 >
                                   <span class="sr-only">Search</span>
                                   <svg
@@ -255,20 +255,76 @@
                         </div>
                     </div>
                 </div>
+                <!-- Theme selector -->
+                <div x-data="themeSelector" class="relative">
+                    <button
+                            type="button"
+                            @click="open = !open"
+                            aria-label="Change theme"
+                            class="text-content-secondary hover:bg-surface-hover rounded-lg text-sm p-2 text-center"
+                    >
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="w-4 h-4"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 1 1-9 0V4.125Zm4.5 14.25a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z"
+                                    clip-rule="evenodd"
+                            />
+                            <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257ZM12.738 17.625l6.474-6.474a1.875 1.875 0 0 0-1.337-.551H10.5a3.375 3.375 0 0 0-.238.016l2.476 7.01Z" />
+                        </svg>
+                    </button>
+                    <div
+                            x-cloak
+                            x-show="open"
+                            x-transition
+                            @click.outside="open = false"
+                            class="absolute right-0 bottom-full mb-2 md:bottom-auto md:top-full md:mt-2 w-48 rounded-xl border border-edge bg-surface p-2 shadow-lg z-50"
+                    >
+                        <template x-for="t in themes" :key="t.name">
+                            <button
+                                    @click="$store.theme.setTheme(t.name); open = false"
+                                    class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm text-content hover:bg-surface-hover"
+                            >
+                                <span
+                                        class="inline-block h-3 w-3 rounded-full border border-edge-secondary"
+                                        :style="'background-color:' + t.color"
+                                ></span>
+                                <span class="flex-1" x-text="t.label"></span>
+                                <svg
+                                        x-show="$store.theme.name === t.name"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        class="w-4 h-4 text-accent"
+                                >
+                                    <path
+                                            fill-rule="evenodd"
+                                            d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                                            clip-rule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                        </template>
+                    </div>
+                </div>
                 <button
                         id="theme-toggle"
                         type="button"
                         x-data="themeToggle"
-                        @click="toggle()"
+                        @click="$store.theme.toggleDark()"
                         aria-label="Toggle theme"
-                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2 text-center"
+                        class="text-content-secondary hover:bg-surface-hover rounded-lg text-sm p-2 text-center"
                 >
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             fill="currentColor"
                             class="hidden w-4 h-4"
-                            :class="{ 'hidden':  dark }"
+                            :class="{ 'hidden': $store.theme.dark }"
                     >
                         <path
                                 fill-rule="evenodd"
@@ -281,7 +337,7 @@
                             viewBox="0 0 24 24"
                             fill="currentColor"
                             class="hidden w-4 h-4"
-                            :class="{ 'hidden': ! dark }"
+                            :class="{ 'hidden': !$store.theme.dark }"
                     >
                         <path
                                 d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z"
@@ -293,7 +349,7 @@
                         type="button"
                         @click="window.location.reload()"
                         aria-label="Reload page"
-                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2 text-center"
+                        class="text-content-secondary hover:bg-surface-hover rounded-lg text-sm p-2 text-center"
                 >
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
