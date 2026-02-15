@@ -3,10 +3,10 @@
     <div class="mx-auto container">
         <article
                 x-data="item()"
-                class="mb-3 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25"
+                class="mb-3 rounded-xl card-gradient p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] shadow-theme"
         >
             <div
-                    class="flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900"
+                    class="flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-surface !pt-8"
             >
                 <!--<img :src="image" alt="image" class="w-12 h-12 rounded shadow-lg" />-->
 
@@ -15,17 +15,17 @@
                             :href="url"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="hover:underline text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                            class="hover:underline text-content hover:text-content-heading"
                             x-text="title"
                     ></a>
                 </h3>
 
-                <p class="text-sm text-gray-600" x-show="text != ''" x-text="text">
+                <p class="text-sm text-content" x-show="text != ''" x-text="text">
                     loading ...
                 </p>
 
                 <div class="mt-2 sm:flex sm:items-center sm:gap-2">
-                    <div class="flex items-center gap-1 text-gray-500">
+                    <div class="flex items-center gap-1 text-content-secondary">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -47,7 +47,7 @@
                     <span class="hidden sm:block" aria-hidden="true">&middot;</span>
 
                     <div
-                            class="flex items-center gap-1 text-gray-500 hover:underline hover:cursor-pointer"
+                            class="flex items-center gap-1 text-content-secondary hover:underline hover:cursor-pointer"
                     >
                         <a :href='"/item/"+id' class="text-xs flex">
                             <svg
@@ -70,20 +70,20 @@
 
                     <span class="hidden sm:block" aria-hidden="true">&middot;</span>
 
-                    <p class="hidden sm:block sm:text-xs sm:text-gray-500">
+                    <p class="hidden sm:block sm:text-xs sm:text-content-secondary">
                         Posted by
                         <a
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 :href="by_url"
-                                class="font-medium underline hover:text-gray-700"
+                                class="font-medium underline hover:text-content-heading"
                                 x-text="by"
                         ></a>
                     </p>
 
                     <span class="hidden sm:block" aria-hidden="true">&middot;</span>
 
-                    <div class="flex items-center gap-1 text-gray-500">
+                    <div class="flex items-center gap-1 text-content-secondary">
                         <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -108,11 +108,11 @@
             </div>
         </article>
         <section
-                class="mb-3 rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] dark:shadow-gray-700/25"
+                class="mb-3 rounded-xl card-gradient p-0.5 shadow-xl transition hover:animate-background hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] shadow-theme"
         >
             <ul
                     id="comments"
-                    class="text-left flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-white !pt-8 dark:bg-gray-900 text-gray-600 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200"
+                    class="text-left flex flex-col gap-4 p-4 sm:p-6 lg:p-8 rounded-[10px] bg-surface !pt-8 text-content hover:text-content-heading"
             ></ul>
         </section>
     </div>

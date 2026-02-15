@@ -23,7 +23,7 @@ export default (initialID = 0) => ({
     async init() {
         if (this.id == null) {
             // get id from url path /item/:id
-            const id  = window.location.pathname.split('/').pop()
+            const id = window.location.pathname.split('/').pop()
             if (id) {
                 this.id = Number(id)
             }
@@ -59,7 +59,10 @@ export default (initialID = 0) => ({
             velocityThreshold: 10,
             // Used to calculate the distance threshold to ignore the gestures velocity
             // and always consider it a swipe.
-            disregardVelocityThreshold: (type: string, self: { element: { clientWidth: any; clientHeight: any } }) =>
+            disregardVelocityThreshold: (
+                type: string,
+                self: { element: { clientWidth: any; clientHeight: any } }
+            ) =>
                 Math.floor(
                     0.5 *
                         (type === 'x'
@@ -164,7 +167,15 @@ export default (initialID = 0) => ({
         })
     },
 
-    handleData(data: { title: string; url: string; score: number; by: string; time: number; descendants: number; text: string }) {
+    handleData(data: {
+        title: string
+        url: string
+        score: number
+        by: string
+        time: number
+        descendants: number
+        text: string
+    }) {
         this.title = data.title
         this.url = data.url
         if (!this.url) {
@@ -241,102 +252,109 @@ export default (initialID = 0) => ({
     printComments(comments: any[], target: HTMLUListElement, hidden = false) {
         // recursively print comments for this children
         if (!comments) return
-        comments.forEach((child: { author: string; created_at_i: number; children: string | any[]; text: string }) => {
-            // create a list item for each comment
-            // if it has children, create new ul and call printComments
-            let li = document.createElement('li')
-            li.classList.add(
-                'comment',
-                'border-l-2',
-                'border-gray-200',
-                'dark:border-gray-700',
-                'pl-4',
-                'py-2',
-                'mb-2',
-                'hover:border-gray-300',
-                'dark:hover:border-gray-600'
-            )
-
-            let authorA = document.createElement('a')
-            authorA.href =
-                'https://news.ycombinator.com/user?id=' + child.author
-            authorA.target = '_blank'
-            authorA.rel = 'noopener noreferrer'
-            authorA.innerText = child.author
-            authorA.classList.add(
-                'text-gray-500',
-                'dark:text-gray-400',
-                'hover:text-gray-700',
-                'dark:hover:text-gray-200',
-                'underline'
-            )
-
-            let dateSpan = document.createElement('span')
-            dateSpan.innerText =
-                ' ' + new Date(child.created_at_i * 1000).toLocaleString()
-            dateSpan.classList.add('text-gray-500', 'dark:text-gray-400')
-
-            if (child.children.length > 0) {
-                let span = document.createElement('span')
-                span.innerHTML = unescape(child.text)
-
-                let button = document.createElement('button')
-                button.innerText = 'collapse'
-                button.classList.add(
-                    'ml-2',
-                    'inline-block',
-                    'rounded-md',
-                    'px-1',
-                    'py-1',
-                    'text-sm',
-                    'focus:relative',
-                    'text-gray-500',
-                    'hover:text-gray-700',
-                    'dark:text-gray-400',
-                    'dark:hover:text-gray-200',
-                    'focus:text-white',
-                    'bg-gray-200',
-                    'dark:bg-gray-800'
+        comments.forEach(
+            (child: {
+                author: string
+                created_at_i: number
+                children: string | any[]
+                text: string
+            }) => {
+                // create a list item for each comment
+                // if it has children, create new ul and call printComments
+                let li = document.createElement('li')
+                li.classList.add(
+                    'comment',
+                    'border-l-2',
+                    'border-gray-200',
+                    'dark:border-gray-700',
+                    'pl-4',
+                    'py-2',
+                    'mb-2',
+                    'hover:border-gray-300',
+                    'dark:hover:border-gray-600'
                 )
 
-                button.addEventListener('click', (event) => {
-                    let childrenElements =
-                        event.target.parentElement.querySelector('ul')
-                    console.log(childrenElements)
-                    if (childrenElements) {
-                        if (childrenElements.classList.contains('hidden')) {
-                            childrenElements.classList.remove('hidden')
-                            event.target.innerText = 'collapse'
-                        } else {
-                            childrenElements.classList.add('hidden')
-                            event.target.innerText = 'expand'
+                let authorA = document.createElement('a')
+                authorA.href =
+                    'https://news.ycombinator.com/user?id=' + child.author
+                authorA.target = '_blank'
+                authorA.rel = 'noopener noreferrer'
+                authorA.innerText = child.author
+                authorA.classList.add(
+                    'text-gray-500',
+                    'dark:text-gray-400',
+                    'hover:text-gray-700',
+                    'dark:hover:text-gray-200',
+                    'underline'
+                )
+
+                let dateSpan = document.createElement('span')
+                dateSpan.innerText =
+                    ' ' + new Date(child.created_at_i * 1000).toLocaleString()
+                dateSpan.classList.add('text-gray-500', 'dark:text-gray-400')
+
+                if (child.children.length > 0) {
+                    let span = document.createElement('span')
+                    span.innerHTML = unescape(child.text)
+
+                    let button = document.createElement('button')
+                    button.innerText = 'collapse'
+                    button.classList.add(
+                        'ml-2',
+                        'inline-block',
+                        'rounded-md',
+                        'px-1',
+                        'py-1',
+                        'text-sm',
+                        'focus:relative',
+                        'text-gray-500',
+                        'hover:text-gray-700',
+                        'dark:text-gray-400',
+                        'dark:hover:text-gray-200',
+                        'focus:text-white',
+                        'bg-gray-200',
+                        'dark:bg-gray-800'
+                    )
+
+                    button.addEventListener('click', (event) => {
+                        let childrenElements =
+                            event.target.parentElement.querySelector('ul')
+                        console.log(childrenElements)
+                        if (childrenElements) {
+                            if (childrenElements.classList.contains('hidden')) {
+                                childrenElements.classList.remove('hidden')
+                                event.target.innerText = 'collapse'
+                            } else {
+                                childrenElements.classList.add('hidden')
+                                event.target.innerText = 'expand'
+                            }
                         }
+                    })
+
+                    let ul = document.createElement('ul')
+                    ul = this.printComments(child.children, ul, true)
+                    if (hidden) {
+                        ul.classList.add('hidden')
+                        button.innerText = 'expand'
                     }
-                })
 
-                let ul = document.createElement('ul')
-                ul = this.printComments(child.children, ul, true)
-                if (hidden) {
-                    ul.classList.add('hidden')
-                    button.innerText = 'expand'
+                    li.appendChild(authorA)
+                    li.appendChild(dateSpan)
+                    li.appendChild(button)
+                    li.appendChild(document.createElement('br'))
+                    li.appendChild(span)
+                    li.appendChild(ul)
+                } else {
+                    let span = document.createElement('span')
+                    span.innerHTML = unescape(child.text)
+                    li.appendChild(authorA)
+                    li.appendChild(dateSpan)
+                    li.appendChild(document.createElement('br'))
+                    li.appendChild(span)
                 }
-
-                li.appendChild(authorA)
-                li.appendChild(dateSpan)
-                li.appendChild(button)
-                li.appendChild(document.createElement('br'))
-                li.appendChild(span)
-                li.appendChild(ul)
-            } else {
-                let span = document.createElement('span')
-                span.innerHTML = unescape(child.text)
-                li.appendChild(authorA)
-                li.appendChild(dateSpan)
-                li.appendChild(document.createElement('br'))
-                li.appendChild(span)
+                target.appendChild(li)
             }
-            target.appendChild(li)
-        })
+        )
         return target
     },
 })
