@@ -20,9 +20,9 @@
                     ></a>
                 </h3>
 
-                <p class="text-sm text-content" x-show="text != ''" x-text="text">
+                <div class="text-sm text-content prose prose-sm dark:prose-invert max-w-none" x-show="text != ''" x-html="text">
                     loading ...
-                </p>
+                </div>
 
                 <div class="mt-2 sm:flex sm:items-center sm:gap-2">
                     <div class="flex items-center gap-1 text-content-secondary">

@@ -121,3 +121,7 @@ vendor/
 cache/
 
 .idea
+
+# macOS files
+__MACOSX
+.DS_Store

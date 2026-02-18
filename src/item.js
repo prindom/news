@@ -1,4 +1,5 @@
 import TinyGesture from 'tinygesture'
+import { formatHnText } from './formatText.js'
 
 export default (initialID = null) => ({
     open: false,
@@ -171,9 +172,12 @@ export default (initialID = null) => ({
         this.time = data.time
         this.descendants = data.descendants
         if (data.text) {
+            // Decode HTML entities from API response
             let element = document.createElement('div')
             element.innerHTML = data.text
-            this.text = element.textContent || ''
+            const decodedText = element.textContent || ''
+            // Format according to HN rules (no linkify for submission text)
+            this.text = formatHnText(decodedText, false)
         } else {
             this.text = this.url
         }
@@ -223,7 +227,9 @@ export default (initialID = null) => ({
                 if (data.text) {
                     let element = document.createElement('div')
                     element.innerHTML = data.text
-                    this.text = element.textContent || ''
+                    const decodedText = element.textContent || ''
+                    // Format according to HN rules (no linkify for submission text)
+                    this.text = formatHnText(decodedText, false)
                 } else {
                     this.text = this.url
                 }
@@ -294,7 +300,17 @@ export default (initialID = null) => ({
 
             if (child.children.length > 0) {
                 let span = document.createElement('span')
-                span.innerHTML = unescape(child.text)
+                // Decode HTML entities and format according to HN rules
+                let tempDiv = document.createElement('div')
+                tempDiv.innerHTML = unescape(child.text)
+                const decodedText = tempDiv.textContent || ''
+                span.innerHTML = formatHnText(decodedText, true)
+                span.classList.add(
+                    'prose',
+                    'prose-sm',
+                    'dark:prose-invert',
+                    'max-w-none'
+                )
 
                 let button = document.createElement('button')
                 button.innerText = 'collapse'
@@ -345,7 +361,17 @@ export default (initialID = null) => ({
                 li.appendChild(ul)
             } else {
                 let span = document.createElement('span')
-                span.innerHTML = unescape(child.text)
+                // Decode HTML entities and format according to HN rules
+                let tempDiv = document.createElement('div')
+                tempDiv.innerHTML = unescape(child.text)
+                const decodedText = tempDiv.textContent || ''
+                span.innerHTML = formatHnText(decodedText, true)
+                span.classList.add(
+                    'prose',
+                    'prose-sm',
+                    'dark:prose-invert',
+                    'max-w-none'
+                )
                 li.appendChild(authorA)
                 li.appendChild(dateSpan)
                 li.appendChild(document.createElement('br'))
