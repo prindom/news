@@ -21,15 +21,21 @@ function escapeHtml(text) {
  */
 function linkifyUrls(text) {
     // First handle URLs in angle brackets <url>
-    text = text.replace(/<(https?:\/\/[^\s>]+)>/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">$1</a>')
-    
+    text = text.replace(
+        /<(https?:\/\/[^\s>]+)>/g,
+        '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">$1</a>'
+    )
+
     // Then handle regular URLs not already in links
     // This regex matches URLs that are not already part of an <a> tag
-    text = text.replace(/(?<!href=["'])(https?:\/\/[^\s<]+[^\s<.,;:!?'")\]])/g, (match) => {
-        // Don't linkify if already inside an anchor tag
-        return `<a href="${match}" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">${match}</a>`
-    })
-    
+    text = text.replace(
+        /(?<!href=["'])(https?:\/\/[^\s<]+[^\s<.,;:!?'")\]])/g,
+        (match) => {
+            // Don't linkify if already inside an anchor tag
+            return `<a href="${match}" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">${match}</a>`
+        }
+    )
+
     return text
 }
 
@@ -43,15 +49,15 @@ function formatItalics(text) {
     text = text.replace(/\\\*/g, '___ESCAPED_ASTERISK___')
     // Replace ** with a placeholder
     text = text.replace(/\*\*/g, '___DOUBLE_ASTERISK___')
-    
+
     // Now handle italic formatting: *text* becomes <i>text</i>
     // Match asterisks that surround text (not at word boundaries only)
     text = text.replace(/\*([^*\n]+)\*/g, '<i>$1</i>')
-    
+
     // Restore protected asterisks
     text = text.replace(/___ESCAPED_ASTERISK___/g, '*')
     text = text.replace(/___DOUBLE_ASTERISK___/g, '*')
-    
+
     return text
 }
 
@@ -63,7 +69,7 @@ function formatItalics(text) {
  */
 export function formatHnText(text, linkify = true) {
     if (!text) return ''
-    
+
     // Split text into lines
     const lines = text.split('\n')
     const result = []
@@ -71,12 +77,12 @@ export function formatHnText(text, linkify = true) {
     let codeBlock = []
     let currentParagraph = []
     let previousLineBlank = false
-    
+
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i]
         const isBlank = line.trim() === ''
         const isIndented = line.length > 0 && line.match(/^  +/) // 2 or more spaces
-        
+
         // Check if this starts a code block (blank line followed by indented line)
         if (previousLineBlank && isIndented && !inCodeBlock) {
             // Flush current paragraph
@@ -92,11 +98,17 @@ export function formatHnText(text, linkify = true) {
                 codeBlock.push(line)
             } else {
                 // End code block
-                const codeContent = codeBlock.map(l => escapeHtml(l)).join('\n')
-                result.push('<pre class="bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2"><code>' + codeContent + '</code></pre>')
+                const codeContent = codeBlock
+                    .map((l) => escapeHtml(l))
+                    .join('\n')
+                result.push(
+                    '<pre class="bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2"><code>' +
+                        codeContent +
+                        '</code></pre>'
+                )
                 inCodeBlock = false
                 codeBlock = []
-                
+
                 // Process current line normally
                 if (!isBlank) {
                     currentParagraph.push(line)
@@ -118,16 +130,20 @@ export function formatHnText(text, linkify = true) {
             // Regular line - add to current paragraph
             currentParagraph.push(line)
         }
-        
+
         previousLineBlank = isBlank
     }
-    
+
     // Flush any remaining code block
     if (inCodeBlock && codeBlock.length > 0) {
-        const codeContent = codeBlock.map(l => escapeHtml(l)).join('\n')
-        result.push('<pre class="bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2"><code>' + codeContent + '</code></pre>')
+        const codeContent = codeBlock.map((l) => escapeHtml(l)).join('\n')
+        result.push(
+            '<pre class="bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2"><code>' +
+                codeContent +
+                '</code></pre>'
+        )
     }
-    
+
     // Flush any remaining paragraph
     if (currentParagraph.length > 0) {
         let paragraphText = currentParagraph.join(' ')
@@ -138,6 +154,6 @@ export function formatHnText(text, linkify = true) {
         }
         result.push('<p>' + paragraphText + '</p>')
     }
-    
+
     return result.join('\n')
 }

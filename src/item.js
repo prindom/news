@@ -305,7 +305,12 @@ export default (initialID = null) => ({
                 tempDiv.innerHTML = unescape(child.text)
                 const decodedText = tempDiv.textContent || ''
                 span.innerHTML = formatHnText(decodedText, true)
-                span.classList.add('prose', 'prose-sm', 'dark:prose-invert', 'max-w-none')
+                span.classList.add(
+                    'prose',
+                    'prose-sm',
+                    'dark:prose-invert',
+                    'max-w-none'
+                )
 
                 let button = document.createElement('button')
                 button.innerText = 'collapse'
@@ -361,7 +366,12 @@ export default (initialID = null) => ({
                 tempDiv.innerHTML = unescape(child.text)
                 const decodedText = tempDiv.textContent || ''
                 span.innerHTML = formatHnText(decodedText, true)
-                span.classList.add('prose', 'prose-sm', 'dark:prose-invert', 'max-w-none')
+                span.classList.add(
+                    'prose',
+                    'prose-sm',
+                    'dark:prose-invert',
+                    'max-w-none'
+                )
                 li.appendChild(authorA)
                 li.appendChild(dateSpan)
                 li.appendChild(document.createElement('br'))

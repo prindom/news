@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatting Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <h1 class="text-3xl font-bold mb-6">HackerNews Text Formatting Tests</h1>
+        
+        <div class="border p-4 rounded">
+            <h2 class="text-xl font-semibold mb-2">Test 1: Paragraphs</h2>
+            <div class="bg-gray-100 p-3 rounded mb-2 whitespace-pre-wrap font-mono text-sm">First paragraph.
+
+Second paragraph.</div>
+            <div id="test1" class="bg-blue-50 p-3 rounded"></div>
+        </div>
+        
+        <div class="border p-4 rounded">
+            <h2 class="text-xl font-semibold mb-2">Test 2: Italics</h2>
+            <div class="bg-gray-100 p-3 rounded mb-2 font-mono text-sm">This is *italic* text.</div>
+            <div id="test2" class="bg-blue-50 p-3 rounded"></div>
+        </div>
+        
+        <div class="border p-4 rounded">
+            <h2 class="text-xl font-semibold mb-2">Test 3: Code Block</h2>
+            <div class="bg-gray-100 p-3 rounded mb-2 whitespace-pre-wrap font-mono text-sm">Code example:
+
+  function test() {
+    return 42;
+  }</div>
+            <div id="test3" class="bg-blue-50 p-3 rounded"></div>
+        </div>
+        
+        <div class="border p-4 rounded">
+            <h2 class="text-xl font-semibold mb-2">Test 4: URLs</h2>
+            <div class="bg-gray-100 p-3 rounded mb-2 font-mono text-sm">Visit https://example.com for more.</div>
+            <div id="test4" class="bg-blue-50 p-3 rounded"></div>
+        </div>
+    </div>
+    
+    <script type="module">
+        // Inline the formatter code for testing
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function linkifyUrls(text) {
+            text = text.replace(/<(https?:\/\/[^\s>]+)>/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">$1</a>');
+            text = text.replace(/(?<!href=["'])(https?:\/\/[^\s<]+[^\s<.,;:!?'")\]])/g, (match) => {
+                return \`<a href="\${match}" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200">\${match}</a>\`;
+            });
+            return text;
+        }
+        
+        function formatItalics(text) {
+            text = text.replace(/\\\*/g, '___ESCAPED_ASTERISK___');
+            text = text.replace(/\*\*/g, '___DOUBLE_ASTERISK___');
+            text = text.replace(/\*([^*\n]+)\*/g, '<i>$1</i>');
+            text = text.replace(/___ESCAPED_ASTERISK___/g, '*');
+            text = text.replace(/___DOUBLE_ASTERISK___/g, '*');
+            return text;
+        }
+        
+        function formatHnText(text, linkify = true) {
+            if (!text) return '';
+            
+            const lines = text.split('\n');
+            const result = [];
+            let inCodeBlock = false;
+            let codeBlock = [];
+            let currentParagraph = [];
+            let previousLineBlank = false;
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const isBlank = line.trim() === '';
+                const isIndented = line.length > 0 && line.match(/^  +/);
+                
+                if (previousLineBlank && isIndented && !inCodeBlock) {
+                    if (currentParagraph.length > 0) {
+                        result.push('<p>' + currentParagraph.join(' ') + '</p>');
+                        currentParagraph = [];
+                    }
+                    inCodeBlock = true;
+                    codeBlock = [line];
+                } else if (inCodeBlock) {
+                    if (isIndented || isBlank) {
+                        codeBlock.push(line);
+                    } else {
+                        const codeContent = codeBlock.map(l => escapeHtml(l)).join('\n');
+                        result.push('<pre class="bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2"><code>' + codeContent + '</code></pre>');
+                        inCodeBlock = false;
+                        codeBlock = [];
+                        if (!isBlank) {
+                            currentParagraph.push(line);
+                        }
+                    }
+                } else if (isBlank) {
+                    if (currentParagraph.length > 0) {
+                        let paragraphText = currentParagraph.join(' ');
+                        paragraphText = escapeHtml(paragraphText);
+                        paragraphText = formatItalics(paragraphText);
+                        if (linkify) {
+                            paragraphText = linkifyUrls(paragraphText);
+                        }
+                        result.push('<p>' + paragraphText + '</p>');
+                        currentParagraph = [];
+                    }
+                } else {
+                    currentParagraph.push(line);
+                }
+                
+                previousLineBlank = isBlank;
+            }
+            
+            if (inCodeBlock && codeBlock.length > 0) {
+                const codeContent = codeBlock.map(l => escapeHtml(l)).join('\n');
+                result.push('<pre class="bg-gray-100 dark:bg-gray-800 p-2 rounded overflow-x-auto my-2"><code>' + codeContent + '</code></pre>');
+            }
+            
+            if (currentParagraph.length > 0) {
+                let paragraphText = currentParagraph.join(' ');
+                paragraphText = escapeHtml(paragraphText);
+                paragraphText = formatItalics(paragraphText);
+                if (linkify) {
+                    paragraphText = linkifyUrls(paragraphText);
+                }
+                result.push('<p>' + paragraphText + '</p>');
+            }
+            
+            return result.join('\n');
+        }
+        
+        // Run tests
+        document.getElementById('test1').innerHTML = formatHnText('First paragraph.\n\nSecond paragraph.', true);
+        document.getElementById('test2').innerHTML = formatHnText('This is *italic* text.', true);
+        document.getElementById('test3').innerHTML = formatHnText('Code example:\n\n  function test() {\n    return 42;\n  }', true);
+        document.getElementById('test4').innerHTML = formatHnText('Visit https://example.com for more.', true);
+    </script>
+</body>
+</html>
